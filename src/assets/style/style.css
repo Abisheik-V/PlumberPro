@@ -1,0 +1,392 @@
+:root {
+    --primary-color: #00f3ff;
+    --primary-dark: #00bcd4;
+    --secondary-color: #bc13fe;
+    --dark-color: #050510;
+    --light-color: #0b0b1e;
+    --text-dark: #e0e0e0;
+    --text-light: #ffffff;
+    --glass-bg: rgba(5, 5, 16, 0.8);
+    --glass-border: rgba(0, 243, 255, 0.3);
+    --neon-glow: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-color: var(--dark-color);
+}
+
+/* Navbar Styles */
+.navbar {
+    box-shadow: 0 4px 30px rgba(0, 243, 255, 0.1);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: var(--primary-color) !important;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand i {
+    color: var(--primary-color);
+    filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.8));
+}
+
+.nav-link {
+    font-weight: 600;
+    color: var(--text-dark) !important;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: var(--text-light);
+    height: 90vh;
+    /* Slightly taller */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    /* Modern slant */
+}
+
+/* Hero Background Animation */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    animation: zoomBg 20s infinite alternate;
+}
+
+@keyframes zoomBg {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    animation: slideUp 1s ease forwards 0.5s;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: slideUp 1s ease forwards 0.8s;
+}
+
+.hero-btn-group {
+    opacity: 0;
+    animation: slideUp 1s ease forwards 1.1s;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Glowing Button */
+.btn-glow {
+    box-shadow: 0 0 15px rgba(13, 110, 253, 0.5);
+    transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+    box-shadow: 0 0 25px rgba(13, 110, 253, 0.8);
+    transform: translateY(-3px);
+}
+
+/* Services Section 3D Cards */
+.services-section {
+    padding: 100px 0;
+    margin-top: -15vh;
+    background-color: var(--dark-color);
+    /* Dark Background */
+    perspective: 1000px;
+    position: relative;
+    z-index: 10;
+}
+
+.service-card {
+    border: 1px solid rgba(0, 243, 255, 0.1);
+    background: var(--light-color);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
+    padding: 2rem;
+    height: 100%;
+    color: var(--text-dark);
+}
+
+.service-card:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.3), inset 0 0 10px rgba(0, 243, 255, 0.1);
+    border-color: var(--primary-color);
+}
+
+.service-icon {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    transition: transform 0.5s ease;
+    display: inline-block;
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Floating Animation Utility */
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Footer Styles */
+.footer {
+    background: linear-gradient(to right, #050510, #1a1a2e, #050510);
+    color: var(--text-dark);
+    padding: 80px 0 30px;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+/* Footer Wave Effect (Optional via CSS or SVG) */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+.footer h5 {
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 10px;
+    text-shadow: 0 0 5px rgba(0, 243, 255, 0.5);
+}
+
+.footer h5::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 2px;
+    background: var(--secondary-color);
+    box-shadow: 0 0 5px var(--secondary-color);
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: block;
+    padding: 5px 0;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+    padding-left: 10px;
+    /* Slight shift */
+}
+
+.social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #fff;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.social-icons a:hover {
+    background: var(--primary-color);
+    transform: rotate(360deg);
+    border-color: #fff;
+}
+
+.footer-bottom {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* =========================================
+   Responsive Media Queries
+   ========================================= */
+
+/* Mobile Devices (Portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+
+    .hero-section {
+        height: 100vh;
+        /* Full height on mobile */
+        clip-path: none;
+        /* Remove slant on small screens for more space */
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+        /* Smaller heading */
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .hero-btn-group .btn {
+        width: 100%;
+        /* Full width buttons */
+        margin-bottom: 10px;
+        margin-right: 0 !important;
+    }
+
+    .services-section {
+        padding: 60px 0;
+        margin-top: 0;
+        /* Reset negative margin since clip-path is gone */
+    }
+
+    .service-card {
+        margin-bottom: 20px;
+    }
+
+    .footer {
+        text-align: center;
+    }
+
+    .footer h5::after {
+        left: 50%;
+        transform: translateX(-50%);
+        /* Center underline */
+    }
+}
+
+/* Tablets (Landscape phones and portrait tablets, 576px to 991px) */
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .hero-section {
+        height: 70vh;
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        /* Less aggressive slant */
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .services-section {
+        margin-top: -5vh;
+        /* Adjust overlap */
+    }
+}
+
+/* Desktops (Large screens, 992px and up) */
+@media (min-width: 992px) {
+
+    /* Ensure content doesn't stretch too wide on ultra-wide screens */
+    .container {
+        max-width: 1320px;
+    }
+
+    .hero-content h1 {
+        font-size: 4.5rem;
+    }
+}
